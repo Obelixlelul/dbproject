@@ -1,0 +1,53 @@
+{{>partials/header}}
+
+<div class="divCentered">
+    <h2>Seja bem vindo {{user.result.nome}}, cargo {{user.type}}</h2>
+</div>
+<div class="divCentered">
+    <h3 class="">Criar novo usuário</h3>
+    <div class="screen__content">
+        <form class="login" method="POST" action="/cadastro">
+            <div class="login__field">
+                <input type="text" class="form-control" placeholder="CPF" name="id">
+            </div>
+        
+            <div class="login__field">
+                <input type="password" class="form-control" placeholder="Password" name="password">
+            </div>
+
+            <div class="login__field">
+                <input type="text" class="form-control" placeholder="Nome" name="nome">
+            </div>
+            
+            <div class="login__field">
+                <input type="text" class="form-control" placeholder="Sobrenome" name="sobrenome">
+            </div>
+
+            <div class="login__field">
+                <input type="text" class="form-control" placeholder="Sexo" name="sexo">
+            </div>
+            
+            <div class="login__field">
+                <input type="text" class="form-control" placeholder="Telefone" name="numero_telefone">
+            </div>
+            
+            <div class="login__field">
+                <input type="text" class="form-control" placeholder="Nascimento" name="data_nascimento">
+            </div>
+
+            <select id="cargo" name="cargo" class="form-select">
+                <option selected>Escolha um cargo</option>
+                <option value="gestor">Gestor</option>
+                <option value="medico">Medico</option>
+                <option value="farmaceutico">Farmaceutico</option>
+                <option value="recepcionista">Recepcionista</option>
+                <option value="enfermeiro">Enfermeiro</option>
+            </select>
+            <br>
+            <button class="btn btn-success">
+                <span class="button__text">CADASTRAR</span>
+            </button>				
+        </form>
+    </div>	
+</div>
+{{>partials/footer}}

@@ -1,0 +1,49 @@
+{{>partials/header}}
+
+<div class="divCentered">
+<h3>seja bem vindo {{user.result.nome}}, cargo {{user.type}}</h3>
+</div>
+
+{{#pattientList.length}}
+<div class="divCentered">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Sobrenome</th>
+        <th scope="col">Medicamento</th>
+        <th scope="col">Quantidade</th>
+        <th scope="col">Acionar Botão</th>
+      </tr>
+    </thead>
+    {{/pattientList.length}}
+    <tbody>
+      {{#pattientList}}
+      <tr>
+          <th scope="row">{{id_atendimento}}</th>
+          <td>{{nome}}</td>
+          <td>{{sobrenome}}</td>
+          <td>{{mnome}}</td>
+          <td>{{qtd}}</td>
+          <td>
+              <form action="/medicar" style="display: inline">
+                  <input type="hidden" name="id_atendimento" value='{{id_atendimento}}'> 
+                  <input type="hidden" name="id_medicamento" value='{{id_medicamento}}'> 
+                  <input type="hidden" name="cpf_farmaceutico" value='{{user.result.cpf_farmaceutico}}'> 
+                  <button type="submit"class="btn btn-primary">Realizar Atendimento</button>
+              </form>
+          </td>
+      </tr>
+      {{/pattientList}}
+    </tbody>
+  </table>
+</div>
+
+{{^pattientList}}
+    <h2>Sem pacientes para medicar</h2>
+{{/pattientList}}
+
+{{>partials/footer}}
+
+

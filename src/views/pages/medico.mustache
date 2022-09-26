@@ -1,0 +1,81 @@
+{{>partials/header}}
+
+<div class="divCentered">
+<h3>seja bem vindo {{user.result.nome}}, cargo {{user.type}}</h3>
+</div>
+
+
+<div class="divCentered">
+    <h3>Lista de pacientes não triados</h3>
+    {{#pattientList}}
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">nome</th>
+            <th scope="col">sobrenome</th>
+            <th scope="col">Score</th>
+            <th scope="col">-</th>
+            <th scope="col">-</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">{{id_atendimento}}</th>
+                <td>{{nome}}</td>
+                <td>{{sobrenome}}</td>
+                <td>{{score_triagem}}</td>
+                <td>
+                    <form action="/atender/{{id_atendimento}}/{{user.result.cpf_medico}}" style="display: inline">
+                        <button type="submit"class="btn btn-primary">Realizar Atendimento</button>
+                    </form>
+                </td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#teste-{{id_atendimento}}-{{nome}}">
+                    Fazer prescrição
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="teste-{{id_atendimento}}-{{nome}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Fazer Prescrição de {{nome}} {{sobrenome}}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/prescrition" id="formPrescricao-{{id_atendimento}}">
+                                    <select class="form-select" aria-label="Default select example" name="medicamento">
+                                        <option selected>Escolha o medicamento</option>
+                                        {{#medicamentsList}}
+                                            <option value="{{id_medicamento}}">{{id_medicamento}} - {{nome}} - {{qtd}} unidades disponíveis</option>
+                                        {{/medicamentsList}}
+                                    </select>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" placeholder="Quantidade" name="qtdPrescrita">
+                                        </div>
+                                    <input type="hidden" name="id_atendimento" value='{{id_atendimento}}'> 
+                                </form>
+                                <div class="modal-footer">
+                                    <button type="submit" form="formPrescricao-{{id_atendimento}}" class="btn btn-primary">Enviar prescrição</button>
+                                </div>
+                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+        <br>
+        
+    {{/pattientList}}
+    {{^pattientList}}
+        <h2>Sem pacientes para atender</h2>
+    {{/pattientList}}
+</div>
+
+
+{{>partials/footer}}

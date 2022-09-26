@@ -1,0 +1,63 @@
+{{>partials/header}}
+
+<div class="divCentered">
+<h3>seja bem vindo {{user.result.nome}}, cargo {{user.type}}</h3>
+</div>
+
+<div class="divCentered">
+    <h3>CADASTRAR ATENDIMENTO</h3>
+    <div class="screen__content">
+        <form class="login" method="POST" action="/addatendimento">
+            <div class="login__field">
+                <input type="text" class="form-control" placeholder="cpf do paciente" name="cpf_paciente">
+            </div>
+            
+            <input type="hidden" name="cpf_recepcionista" value="{{user.result.cpf_recepcionista}}" >
+
+            <button class="btn btn-success">
+                <span class="button__text">CADASTRAR</span>
+            </button>				
+        </form>
+    </div>
+</div>
+
+
+<div class="divCentered">
+    <h3>CADASTRAR PACIENTE</h3>
+
+    <div class="screen__content">
+        <form class="login" method="POST" action="/cadastro">
+            <div class="login__field">
+                <input type="text" class="form-control" placeholder="CPF" name="id">
+            </div>
+
+            <div class="login__field">
+                <input type="text" class="form-control" placeholder="Nome" name="nome">
+            </div>
+            
+            <div class="login__field">
+                <input type="text" class="form-control" placeholder="Sobrenome" name="sobrenome">
+            </div>
+
+            <div class="login__field">
+                <input type="text" class="form-control" placeholder="Sexo" name="sexo">
+            </div>
+            
+            <div class="login__field">
+                <input type="text" class="form-control" placeholder="Telefone" name="numero_telefone">
+            </div>
+            
+            <div class="login__field">
+                <input type="text" class="form-control" placeholder="Nascimento" name="data_nascimento">
+            </div>
+
+            <input type="hidden" name="cargo" value="paciente" >
+
+            <button class="btn btn-success">
+                <span class="button__text">CADASTRAR</span>
+            </button>				
+        </form>
+    </div>
+</div>
+
+{{>partials/footer}}

@@ -1,0 +1,27 @@
+<fieldset>
+    <legend>Faça o Login</legend>
+    <form method="POST" action="/novousuario">
+        <input type="text" name="name"  placeholder="Digite seu nome" /><br/><br/>
+        <input type="number" name="age" value="age" placeholder="Digite sua idade" /><br/><br/>
+        <input type="submit" value="Inserir usuário" />        
+    </form>
+</fieldset>
+
+
+<hr>
+{{! 
+
+ }}
+<h2>Usuários do banco</h2>
+<ul>
+    {{#users}}
+        <li>
+            {{name}} - 
+            Idade: {{age}} - 
+            <a href="/usuario/{{id}}/mais">Incrementar</a> -
+            <a href="/usuario/{{id}}/menos">Decrementar</a> -
+            <a href="/usuario/{{id}}/excluir">Excluir</a>
+        </li>
+    {{/users}}
+
+</ul>

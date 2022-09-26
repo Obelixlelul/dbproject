@@ -1,0 +1,49 @@
+{{>partials/header}}
+
+<div class="divCentered">
+    <h3>seja bem vindo {{user.result.nome}}, cargo {{user.type}}</h3>
+</div>
+
+<div class="divCentered">
+<h3>Lista de pacientes não triados</h3>
+
+{{#pattientList}}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">nome</th>
+      <th scope="col">sobrenome</th>
+      <th scope="col">Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{id_atendimento}}</th>
+      <td>{{nome}}</td>
+      <td>{{sobrenome}}</td>
+        <td>
+            <form action="/addscore">
+                <select id="score" name="score">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>   
+                <input type="hidden" name="cpf_enfermeiro" value="{{user.result.cpf_enfermeiro}}"> 
+                <input type="hidden" name="id_atendimento" value="{{id_atendimento}}"> 
+                <input type="submit" value="Submit">
+        </form>
+        </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+{{/pattientList}}
+{{^pattientList}}
+    <h3 style="color: red">Sem pacientes para triagem</h3>
+{{/pattientList}}
+</div>
+
+
+{{>partials/footer}}
